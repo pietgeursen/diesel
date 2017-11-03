@@ -73,3 +73,14 @@ fn managing_updated_at_for_table() {
     let new_time: NaiveDateTime = query.first(&connection).unwrap();
     assert!(old_time < new_time);
 }
+
+#[test]
+#[cfg(feature = "sqlite")]
+fn file_uri_created_in_memory() {
+    use std::path::Path;
+
+    let connection =
+        SqliteConnection::establish("file::memory:").expect("could not establish connection");
+    assert!(!Path::new("file::memory:").exists());
+    assert!(!Path::new(":memory:").exists());
+}

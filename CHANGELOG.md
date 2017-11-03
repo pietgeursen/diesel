@@ -91,6 +91,12 @@ for Rust libraries in [RFC #1105](https://github.com/rust-lang/rfcs/blob/master/
 * `embed_migrations!` will no longer emit an unused import warning
 * Diesel now supports uuid 0.7 by adding the new feature flag `uuidv07`
 
+* The SQLite backend is now configured to interpret URIs. This allows
+  applications to use in-memory databases and configure the database through the
+  query string. See [the SQLite URI documentation] for additional details.
+
+[the SQLite URI documentation]: https://www.sqlite.org/uri.html
+
 ### Added
 
 * Diesel CLI can be configured to error if a command would result in changes
