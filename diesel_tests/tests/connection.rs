@@ -58,3 +58,11 @@ fn managing_updated_at_for_table() {
     // clean up because we aren't in a transaction
     connection.execute("DROP TABLE auto_time;").unwrap();
 }
+
+#[test]
+#[cfg(feature = "sqlite")]
+fn file_uri_created_in_memory() {
+    let connection =
+        SqliteConnection::establish("file::memory:").expect("could not establish connection");
+    assert!(!Path::new(":memory:").exists());
+}
