@@ -22,6 +22,12 @@ for Rust libraries in [RFC #1105](https://github.com/rust-lang/rfcs/blob/master/
 * Diesel's derives now require that `extern crate diesel;` be at your crate root
   (e.g. `src/lib.rs` or `src/main.rs`)
 
+* The SQLite backend is now configured to interpret URIs. This allows
+  applications to use in-memory databases and configure the database through the
+  query string. See [the SQLite URI documentation] for additional details.
+
+[the SQLite URI documentation]: https://www.sqlite.org/uri.html
+
 ## [1.3.2] - 2018-06-13
 
 ### Fixed
