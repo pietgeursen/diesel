@@ -6,7 +6,7 @@ use std::os::raw as libc;
 use std::{ptr, slice, str};
 
 use super::serialized_value::SerializedValue;
-use self::ffi::{SQLITE_OPEN_CREATE, SQLITE_OPEN_READWRITE, SQLITE_OPEN_URI};
+// use self::ffi::{SQLITE_OPEN_CREATE, SQLITE_OPEN_READWRITE, SQLITE_OPEN_URI};
 
 use result::Error::DatabaseError;
 use result::*;
@@ -21,10 +21,12 @@ impl RawConnection {
     pub fn establish(database_url: &str) -> ConnectionResult<Self> {
         let mut conn_pointer = ptr::null_mut();
         let database_url = try!(CString::new(database_url));
-        let flags = SQLITE_OPEN_READWRITE | SQLITE_OPEN_CREATE | SQLITE_OPEN_URI;
-        let connection_status = unsafe {
-            ffi::sqlite3_open_v2(database_url.as_ptr(), &mut conn_pointer, flags, ptr::null())
-        };
+        // let flags = SQLITE_OPEN_READWRITE | SQLITE_OPEN_CREATE | SQLITE_OPEN_URI;
+        // let connection_status = unsafe {
+        //     ffi::sqlite3_open_v2(database_url.as_ptr(), &mut conn_pointer, flags, ptr::null())
+        // };
+        let connection_status =
+            unsafe { ffi::sqlite3_open(database_url.as_ptr(), &mut conn_pointer )};
 
         match connection_status {
             ffi::SQLITE_OK => {
