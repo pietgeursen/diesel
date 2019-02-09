@@ -14,6 +14,10 @@ for Rust libraries in [RFC #1105](https://github.com/rust-lang/rfcs/blob/master/
   in runtime errors if multiple types were involved (for example, `interval *
   (integer + 1)`)
 
+### Removed
+
+* All previously deprecated items have been removed.
+
 ### Changed
 
 * The way [the `Backend` trait][backend-2-0-0] handles its `RawValue` type has
