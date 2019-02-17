@@ -14,6 +14,10 @@ for Rust libraries in [RFC #1105](https://github.com/rust-lang/rfcs/blob/master/
   in runtime errors if multiple types were involved (for example, `interval *
   (integer + 1)`)
 
+### Added
+
+* `NonAggregate` can now be derived for simple cases.
+
 ### Removed
 
 * All previously deprecated items have been removed.
@@ -28,6 +32,12 @@ for Rust libraries in [RFC #1105](https://github.com/rust-lang/rfcs/blob/master/
 
 [backend-2-0-0]: http://docs.diesel.rs/diesel/backend/trait.Backend.html
 [raw-value-2-0-0]: http://docs.diesel.rs/diesel/backend/type.RawValue.html
+
+### Fixed
+
+* Many types were incorrectly considered non-aggregate when they should not
+  have been. All types in Diesel are now correctly only considered
+  non-aggregate if their parts are.
 
 
 
