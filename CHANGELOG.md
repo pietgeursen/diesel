@@ -39,12 +39,6 @@ for Rust libraries in [RFC #1105](https://github.com/rust-lang/rfcs/blob/master/
   have been. All types in Diesel are now correctly only considered
   non-aggregate if their parts are.
 
-* Parenthesis are now inserted around all mathematical operations. This means
-  that `(2.into_sql() + 3) * 4` will correctly evaluate to 20 as expected.
-  Previously we would generate SQL that evaluated to 14. This could even result
-  in runtime errors if multiple types were involved (for example, `interval *
-  (integer + 1)`)
-
 ### Deprecated
 
 * `diesel_(prefix|postfix|infix)_operator!` have been deprecated. These macros
@@ -54,6 +48,16 @@ for Rust libraries in [RFC #1105](https://github.com/rust-lang/rfcs/blob/master/
 
 
 [2-0-migration]: FIXME write a migration guide
+
+## [1.4.2] - 2019-03-19
+
+### Fixed
+
+* Parenthesis are now inserted around all mathematical operations. This means
+  that `(2.into_sql() + 3) * 4` will correctly evaluate to 20 as expected.
+  Previously we would generate SQL that evaluated to 14. This could even result
+  in runtime errors if multiple types were involved (for example, `interval *
+  (integer + 1)`)
 
 ## [1.4.1] - 2019-01-24
 
